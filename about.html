@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nila Weddings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --primary-light: #A0522D;
+            --gold: #D4AF37;
+            --dark: #1A1A1A;
+            --light: #F8F8F8;
+            --gray: #666;
+            --light-bg: #FFF9F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('mukortham stage/9.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* About Company Section */
+        .about-company {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Founder Section */
+        .founder {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+        
+        .founder-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .founder-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .founder-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .founder-text {
+            flex: 1;
+        }
+        
+        .founder-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .founder-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Vision Mission Section */
+        .vision-mission {
+            padding: 80px 0;
+        }
+        
+        .vm-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .vision, .mission {
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .vision h3, .mission h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .vision h3 i, .mission h3 i {
+            color: var(--gold);
+        }
+        
+        /* Achievements Section */
+        .achievements {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .achievement-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .achievement-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+        
+        /* Request Pricing Section */
+        .pricing-request {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .pricing-request h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-request p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Footer */
+        /* Footer CSS */
+    footer {
+        background: var(--dark);
+        color: white;
+        padding: 50px 0 20px;
+    }
+    
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .footer-column {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .footer-column h3 {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: white;
+    }
+    
+    .footer-column p {
+        margin-bottom: 15px;
+        color: #ddd;
+        font-size: 0.95rem;
+    }
+    
+    .footer-address {
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+    }
+    
+    .footer-address h4 {
+        color: var(--primary);
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .footer-address p {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .footer-address strong {
+        color: var(--primary-light);
+        display: inline-block;
+        min-width: 90px;
+    }
+    
+    .footer-contact {
+        margin-bottom: 20px;
+    }
+    
+    .footer-contact p {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        color: #ddd;
+    }
+    
+    .footer-contact i {
+        color: var(--primary);
+        margin-right: 10px;
+        width: 20px;
+    }
+    
+    .footer-column ul {
+        list-style: none;
+    }
+    
+    .footer-column ul li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 0.95rem;
+    }
+    
+    .footer-column ul li a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+    }
+    
+    .copyright {
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        font-size: 0.9rem;
+    }
+  /* =========================
+   STATS SECTION
+========================= */
+
+.stats {
+    padding: 80px 20px;
+    background: #f5f1e6; /* light cream */
+    text-align: center;
+}
+
+/* Title */
+.section-title h2 {
+    font-size: 36px;
+    color: #b8860b;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #555;
+    margin-bottom: 50px;
+}
+
+/* =========================
+   GRID - ONE LINE
+========================= */
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================
+   CARD STYLE
+========================= */
+
+.stat-card {
+    flex: 1;                /* Equal width */
+    max-width: 240px;       /* Prevent too large */
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 18px;
+    border: 2px solid #e8d7a5;
+    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.3);
+    border-color: #b8860b;
+}
+
+/* Icon */
+.stat-icon i {
+    font-size: 35px;
+    color: #b8860b;
+    margin-bottom: 15px;
+}
+
+/* Number */
+.stat-number {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+/* Text */
+.stat-text {
+    font-size: 15px;
+    color: #666;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .stats-grid {
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        flex: 45%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .stat-card {
+        flex: 100%;
+    }
+}
+
+
+
+
+  /* Offices Section */
+        .offices-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .offices-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        
+        .office-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .office-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .office-header {
+            background: rgb(195, 149, 35);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .office-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .office-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .office-content {
+            padding: 30px;
+        }
+        
+        .office-detail {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .office-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-bg);
+            color:rgb(195, 149, 35);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .office-text h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .office-text p {
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        
+
+
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .footer-column {
+            text-align: center;
+        }
+        
+        .footer-contact p {
+            justify-content: center;
+        }
+        
+        .social-links {
+            justify-content: center;
+        }
+        
+        .footer-address {
+            text-align: left;
+        }
+        
+        .footer-column ul li a:hover {
+            padding-left: 0;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .footer-address p {
+            font-size: 0.85rem;
+        }
+        
+        .footer-contact p {
+            font-size: 0.85rem;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+        }
+    }
+
+/* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .founder-content {
+                flex-direction: column;
+            }
+            
+            .vm-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .about-hero {
+                padding: 150px 0 80px;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+  
+        }
+
+
+        /* Floating Social Container */
+.social-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+/* Main Toggle Button */
+.social-toggle {
+    width: 60px;
+    height: 60px;
+    background: #b8860b;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.social-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Hidden Icons */
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+/* Show when active */
+.social-icons.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Individual Icons */
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+/* Platform Colors */
+.whatsapp {
+    background: #25D366;
+}
+
+.instagram {
+    background: #E4405F;
+}
+
+.youtube {
+    background: #FF0000;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">Nila <span>Wedding</span> Management</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="venues.html">Venues</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="#" class="btn">Get Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Nila Weddings</h1>
+            <p>From concept to execution, Tamilnadu's premier event management company delivers flawless experiences tailored to your unique vision</p>
+        </div>
+    </section>
+
+    <!-- About Company Section -->
+    <section class="about-company">
+        <div class="container">
+            <div class="section-title">
+                <h2>Welcome to Nila Weddings</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>We are a premier event management company based in Tamilnadu, with over 15 years of experience in the event management industry. Nila Wedding Management specializes in comprehensive wedding event management, as well as a diverse range of corporate, personal, regional, public, and private event management services. We create lasting memories for thousands of clients in Tamilnadu and for those seeking destination weddings in Tamilnadu from other states of India and abroad.</p>
+                    <p>Since our establishment in 2015 under the visionary leadership of our founder Mr. Prabhu R., we have successfully completed over 2000+ decor assignments, including weddings, corporate events, inaugurations, and private celebrations. Each year, we are committed to delivering exceptional events as we continue to grow and serve our clients with excellence</p>
+                    <p>We primarily serve across Tamilnadu as a specialized event management company for wedding and event management services. Our journey began in Coimbatore, and we've since expanded across Tamilnadu with strategically located offices in Coimbatore (Ganapathy Layout, KK Nagar, Saibaba Colony) and Kangayam (Dharapuram Road, Near Power Office). We proudly serve clients in Tirupur, Erode, Kovai Puthur, and throughout the region, partnering with the finest marriage halls (Mahals) to provide exceptional venues for all types of celebrations.</p>
+                </div>
+                <div class="about-image">
+                    <img src="enai seer/7.jpg" alt="Nila Weddings Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder">
+        <div class="container">
+            <div class="founder-content">
+                <div class="founder-image">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Founder - EventKerala">
+                </div>
+                <div class="founder-text">
+                    <h3>Our Founder's Vision</h3>
+                    <p>Nila Wedding was founded with a vision to transform the wedding and event management experience in Tamil Nadu. Based in Kangayam, we are dedicated to creating celebrations that beautifully blend South Indian traditions with modern elegance.
+
+Our founder, with strong experience in business management and a deep passion for creative arts, recognized the need for professional wedding services that combine cultural richness with contemporary planning techniques. This unique balance allows us to design weddings that are both traditional at heart and sophisticated in execution..</p>
+                    <p>The early years were driven purely by passion and commitment. Even without a formal office space, our journey began with determination and a clear vision to deliver excellence in every event. With steady growth and client trust, Nila Wedding established itself as a fully professional organization in Kangayam.</p>
+                    <p>Today, as we step into 2025, Nila Wedding proudly serves clients across Tamil Nadu. Our founder’s blend of artistic creativity and strategic planning ensures that every wedding we design becomes a meaningful, memorable, and beautifully executed celebration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section class="vision-mission">
+        <div class="container">
+            <div class="vm-container">
+                <div class="vision">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>At Nila Wedding Management, our vision is to become Tamilnadu's most trusted and innovative wedding and event management company. We are dedicated to creating unforgettable experiences for families across Tamilnadu and for those choosing our beautiful state as their wedding destination.</p>
+                    <p>We aim to revolutionize the event planning industry through personalized, seamless services that honor Tamilnadu's rich traditions while embracing modern excellence. Whether in cities or villages, every event we manage celebrates our cultural heritage with contemporary sophistication</p>
+                </div>
+                <div class="mission">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>At Nila Wedding Management, our mission is to deliver exceptional, professional event planning and management services across the entire state of Tamilnadu—from the northern districts to the southern regions.</p>
+                    <p>We are dedicated to serving the people of Tamilnadu as well as guests from across India and abroad who choose this culturally rich land for their celebrations. We strive to make high-quality event services accessible not only in major cities but also in rural areas, small towns, and villages throughout Tamilnadu</p>
+                    <p>Our approach blends creativity, cultural sensitivity, and meticulous attention to detail to bring every client's vision to life—whether it's a traditional Tamil wedding, a destination celebration, a corporate function, or a private event</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Achievements</h2>
+                <p>Celebrating milestones in our journey of excellence</p>
+            </div>
+            <!-- Stats Section -->
+<section class="stats">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Milestones</h2>
+            <p>Numbers that reflect our dedication and trust</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="stat-number">12+</div>
+                <div class="stat-text">Years of Experience</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-number">1500+</div>
+                <div class="stat-text">Events Covered</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">2000+</div>
+                <div class="stat-text">Customer Satisfaction</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-text">Customer Rating</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <div style="margin-top: 40px;">
+                <p>Our journey of accomplishments has been remarkable, with participation in various high-profile events and celebrity weddings across Kerala. We've had the privilege of working with renowned personalities and organizations, bringing our expertise to diverse events.</p>
+                <p>We are proud members of prestigious event management associations and have garnered various awards for our dedication to the event management industry in Kerala. Our accomplishments have been celebrated in esteemed publications, showcasing our commitment to excellence.</p>
+            </div>
+        </div>
+    </section>
+
+ 
+
+
+    <!-- Offices Section -->
+    <section class="offices-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Offices</h2>
+                <p>Visit us at any of our convenient locations</p>
+            </div>
+            
+            <div class="offices-container">
+                <!-- Coimbatore Office -->
+                <div class="office-card">
+                    <div class="office-header">
+                        <h3>Coimbatore Office</h3>
+                        <p>Main Office & Headquarters</p>
+                    </div>
+                    <div class="office-content">
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Address</h4>
+                                <p>Ganapathy Layout, KK Nagar, Saibaba Colony<br>Coimbatore - 641006<br>Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+919876543210">+91 98765 43210</a><br>
+                                <a href="tel:+919876543212">+91 98765 43212</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:coimbatore@nilawedding.com">coimbatore@nilawedding.com</a><br>
+                                <a href="mailto:info@nilawedding.com">info@nilawedding.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Saturday: 9:00 AM - 8:00 PM<br>
+                                Sunday: 10:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kangayam Office -->
+                <div class="office-card">
+                    <div class="office-header">
+                        <h3>Kangayam Office</h3>
+                        <p>Branch Office & Operations Center</p>
+                    </div>
+                    <div class="office-content">
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Address</h4>
+                                <p>Dharapuram Road, Near Power Office<br>Kangayam - 638701<br>Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+919876543211">+91 98765 43211</a><br>
+                                <a href="tel:+919876543213">+91 98765 43213</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:kangayam@nilawedding.com">kangayam@nilawedding.com</a><br>
+                                <a href="mailto:bookings@nilawedding.com">bookings@nilawedding.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="office-detail">
+                            <div class="office-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="office-text">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Saturday: 9:00 AM - 8:00 PM<br>
+                                Sunday: 10:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   <!-- Pricing Request Section -->
+    <section class="pricing-request">
+        <div class="container">
+            <h2>Do you have any questions?</h2>
+            <p>Contact us for personalized event planning services and pricing information</p>
+            <a href="contact.html" class="btn">Request Pricing</a>
+        </div>
+    </section>
+
+
+
+ <!-- Floating Social Button -->
+<div class="social-container">
+    <div class="social-toggle" onclick="toggleSocial()">
+        <i class="fas fa-share-alt"></i>
+    </div>
+
+    <div class="social-icons" id="socialIcons">
+        <a href="https://wa.me/919865733444" target="_blank" class="icon whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://www.instagram.com/nila__wedding_planners/" target="_blank" class="icon instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="http://www.youtube.com/@Nilawedding" target="_blank" class="icon youtube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</div>
+
+
+
+
+
+    <!-- Footer -->
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Nila Wedding Management</h3>
+                <p>Professional wedding management services across Tamilnadu. Making your special occasions truly memorable.</p>
+                
+                <div class="footer-address">
+                    <h4>Our Offices:</h4>
+                    <p><strong>Coimbatore:</strong> Ganapathy Layout, KK Nagar, Saibaba Colony</p>
+                    <p><strong>Kangayam:</strong> Dharapuram Road, Near Power Office</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <p><i class="fas fa-phone"></i> 98657 33444 | 90955 33444</p>
+                    <p><i class="fas fa-envelope"></i> info@nilawedding.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="services.html">Wedding Planning</a></li>
+                    <li><a href="services.html">Stage & Decor</a></li>
+                    <li><a href="services.html">Catering Services</a></li>
+                    <li><a href="services.html">Photography</a></li>
+                    <li><a href="services.html">Entertainment</a></li>
+                    <li><a href="services.html">Logistics</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Service Areas</h3>
+                <ul>
+                    <li><a href="#">Tirupur</a></li>
+                    <li><a href="#">Erode</a></li>
+                    <li><a href="#">Coimbatore</a></li>
+                    <li><a href="#">Kangayam</a></li>
+                    <li><a href="#">Kovai Puthur</a></li>
+                    <li><a href="#">All Tamil Nadu</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2015 - 2023 Nila Wedding Management. All Rights Reserved. | Founder: Prabhu R | Established Since 2015</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Coimbatore | Kangayam | Tirupur | Erode | Kovai Puthur</p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Simple animation for achievement counters
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.achievement-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText.replace('+', '');
+                    
+                    const inc = target / speed;
+                    
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + inc) + '+';
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target + '+';
+                    }
+                }
+                
+                // Set initial data-target values
+                if(counter.innerText === '750+') counter.setAttribute('data-target', '750');
+                if(counter.innerText === '90+') counter.setAttribute('data-target', '90');
+                if(counter.innerText === '1000+') counter.setAttribute('data-target', '1000');
+                if(counter.innerText === '15+') counter.setAttribute('data-target', '15');
+                
+                updateCount();
+            });
+        });
+
+        
+        function toggleSocial() {
+    document.getElementById("socialIcons").classList.toggle("active");
+}
+
+
+    </script>
+</body>
+</html>

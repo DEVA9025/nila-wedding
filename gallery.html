@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Gallery | Nila Wedding Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #B8860B;
+            --primary-light: #DAA520;
+            --dark: #1A1A1A;
+            --light: #F8F8F8;
+            --gray: #666;
+            --light-bg: #FFF9E6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        /* Gallery Hero */
+        .gallery-hero {
+            height: 60vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('banner/1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .gallery-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        
+        .gallery-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .gallery-hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .breadcrumb-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb-separator {
+            margin: 0 10px;
+            color: var(--gray);
+        }
+        
+        /* Gallery Filter */
+        .gallery-filter {
+            padding: 40px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: var(--light-bg);
+            color: var(--primary);
+            border: none;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid-section {
+            padding: 40px 0 80px;
+            background-color: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 300px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-overlay h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .gallery-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+        
+        .lightbox-prev, .lightbox-next {
+            background: rgba(184, 134, 11, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: var(--primary);
+        }
+        
+        /* Gallery Categories */
+        .gallery-categories {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .categories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .category-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        
+        .category-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .category-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Video Gallery */
+        .video-gallery {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* CTA Section */
+        .gallery-cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('banner/7.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #ddd;
+            font-size: 0.95rem;
+        }
+        
+        .footer-address {
+            margin-bottom: 20px;
+        }
+        
+        .footer-address h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .footer-address p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+          /* Floating Social Container */
+.social-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+/* Main Toggle Button */
+.social-toggle {
+    width: 60px;
+    height: 60px;
+    background: #b8860b;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.social-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Hidden Icons */
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+/* Show when active */
+.social-icons.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Individual Icons */
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+/* Platform Colors */
+.whatsapp {
+    background: #25D366;
+}
+
+.instagram {
+    background: #E4405F;
+}
+
+.youtube {
+    background: #FF0000;
+}
+
+
+
+
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .categories-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .categories-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+            
+            .gallery-hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container navbar">
+            <a href="hello.html" class="logo">Nila <span>Wedding</span> Management</a>
+            <ul class="nav-links">
+                <li><a href="hello.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="venues.html">Venues</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="#" class="btn">Get Quote</a>
+        </div>
+    </header>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="gallery-hero-content">
+            <h1>Our Wedding Gallery</h1>
+            <p>Explore our stunning collection of wedding decorations, stages, and memorable moments</p>
+            <a href="#gallery" class="btn">View Gallery</a>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container breadcrumb-container">
+            <a href="hello.html">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Gallery</span>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="stage">Stage Decorations</button>
+                <button class="filter-btn" data-filter="entrance">Entrance Decor</button>
+                <button class="filter-btn" data-filter="pavilion">Leaves Pavilion</button>
+                <button class="filter-btn" data-filter="led">LED Arches</button>
+                <button class="filter-btn" data-filter="banner">Banner Photos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Wedding Gallery</h2>
+                <p>Browse through our collection of beautifully executed wedding events</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Stage Decorations -->
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/1.jpg" alt="Stage Decoration 1" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Mukurtham Stage</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/2.jpg" alt="Stage Decoration 2" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Elegant Wedding Stage</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/3.jpg" alt="Stage Decoration 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Royal Stage Design</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/4.jpg" alt="Stage Decoration 4" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Floral Stage Decor</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/5.jpg" alt="Stage Decoration 5" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Minimalist Stage Design</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/6.jpg" alt="Stage Decoration 6" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Tamil Stage</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/7.jpg" alt="Stage Decoration 7" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Elegant Floral Arrangements</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/8.jpg" alt="Stage Decoration 8" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Decor</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/9.jpg" alt="Stage Decoration 9" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Grand Wedding Stage</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/10.jpg" alt="Stage Decoration 10" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Elegant Setup</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/11.jpg" alt="Stage Decoration 11" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Design</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/12.jpg" alt="Stage Decoration 12" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Floral Theme Stage</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="stage">
+                    <img src="mukortham stage/13.jpg" alt="Stage Decoration 13" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Complete Stage Setup</h4>
+                        <span class="gallery-category">Stage Decorations</span>
+                    </div>
+                </div>
+                
+                <!-- Entrance Decorations -->
+                <div class="gallery-item" data-category="entrance">
+                    <img src="entrance decoration/2.JPG" alt="Entrance Decoration 1" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Welcome Entrance</h4>
+                        <span class="gallery-category">Entrance Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="entrance">
+                    <img src="entrance decoration/3.JPG" alt="Entrance Decoration 2" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Floral Entrance Decor</h4>
+                        <span class="gallery-category">Entrance Decorations</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="entrance">
+                    <img src="entrance decoration/4.JPG" alt="Entrance Decoration 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Grand Entrance Setup</h4>
+                        <span class="gallery-category">Entrance Decorations</span>
+                    </div>
+                </div>
+                
+                <!-- Leaves Pavilion -->
+                <div class="gallery-item" data-category="pavilion">
+                    <img src="leaves pavilion/1.JPG" alt="Leaves Pavilion 1" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Luxurious Leaves Pavilion</h4>
+                        <span class="gallery-category">Leaves Pavilion</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="pavilion">
+                    <img src="leaves pavilion/4.JPG" alt="Leaves Pavilion 2" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Pavilion Design</h4>
+                        <span class="gallery-category">Leaves Pavilion</span>
+                    </div>
+                </div>
+                
+                <!-- LED Arches -->
+                <div class="gallery-item" data-category="led">
+                    <img src="led welcome arch/1.jpg" alt="LED Arch 1" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Trending LED Welcome Arch</h4>
+                        <span class="gallery-category">LED Arches</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="led">
+                    <img src="led welcome arch/2.jpg" alt="LED Arch 2" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Modern LED Arch Design</h4>
+                        <span class="gallery-category">LED Arches</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="led">
+                    <img src="led welcome arch/3.jpg" alt="LED Arch 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Elegant LED Entrance</h4>
+                        <span class="gallery-category">LED Arches</span>
+                    </div>
+                </div>
+                
+                <!-- Banner Photos -->
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/1.jpg" alt="Banner 1" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Grand Wedding Setup</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/2.jpg" alt="Banner 2" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Celebration</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/3.jpg" alt="Banner 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Wedding Event</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/4.jpg" alt="Banner 4" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Celebration Moments</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/5.jpg" alt="Banner 5" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Rituals</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/6.jpg" alt="Banner 6" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Wedding Decor</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/7.jpg" alt="Banner 7" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Celebration Setup</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="banner">
+                    <img src="banner/8.jpg" alt="Banner 8" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h4>Traditional Decorations</h4>
+                        <span class="gallery-category">Banner Photos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Categories -->
+    <section class="gallery-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery Categories</h2>
+                <p>Explore different aspects of our wedding decorations</p>
+            </div>
+            
+            <div class="categories-container">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Stage Decorations</h3>
+                    <p>Traditional and modern stage designs with elegant floral arrangements and thematic decorations.</p>
+                    <button class="btn" data-filter="stage">View Stage Decor</button>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>Entrance Decor</h3>
+                    <p>Grand entrance decorations that welcome guests with traditional Tamilnadu designs and floral arrangements.</p>
+                    <button class="btn" data-filter="entrance">View Entrances</button>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Leaves Pavilion</h3>
+                    <p>Luxurious leaves pavilions providing natural and elegant spaces for wedding ceremonies and gatherings.</p>
+                    <button class="btn" data-filter="pavilion">View Pavilions</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="video-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Video Gallery</h2>
+                <p>Watch highlights from our beautiful wedding events</p>
+            </div>
+            
+            <div class="video-grid">
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/BxYM7ZLbcL4?si=PIoCIQS4I0yhT9GI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=example2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/example3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gallery-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Inspired by Our Work?</h2>
+                <p>Let us create the same magic for your wedding! Contact us today to discuss how we can transform your wedding dreams into reality with our exquisite decorations and professional services.</p>
+                <a href="#" class="btn">Book a Consultation</a>
+                <p style="margin-top: 20px; font-size: 1rem;">Call us at: +91 98765 43210 | Email: info@nilawedding.com</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+     <!-- Floating Social Button -->
+<div class="social-container">
+    <div class="social-toggle" onclick="toggleSocial()">
+        <i class="fas fa-share-alt"></i>
+    </div>
+
+    <div class="social-icons" id="socialIcons">
+        <a href="https://wa.me/919865733444" target="_blank" class="icon whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://www.instagram.com/nila__wedding_planners/" target="_blank" class="icon instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="http://www.youtube.com/@Nilawedding" target="_blank" class="icon youtube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Nila Wedding Management</h3>
+                    <p>Professional wedding management services across Tamilnadu. Making your special occasions truly memorable.</p>
+                    
+                    <div class="footer-address">
+                        <h4>Our Offices:</h4>
+                        <p><strong>Coimbatore:</strong> Ganapathy Layout, KK Nagar, Saibaba Colony</p>
+                        <p><strong>Kangayam:</strong> Dharapuram Road, Near Power Office</p>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> info@nilawedding.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Gallery Categories</h3>
+                    <ul>
+                        <li><a href="#" data-filter="stage">Stage Decorations</a></li>
+                        <li><a href="#" data-filter="entrance">Entrance Decor</a></li>
+                        <li><a href="#" data-filter="pavilion">Leaves Pavilion</a></li>
+                        <li><a href="#" data-filter="led">LED Arches</a></li>
+                        <li><a href="#" data-filter="banner">Banner Photos</a></li>
+                        <li><a href="#video-gallery">Video Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Service Areas</h3>
+                    <ul>
+                        <li><a href="#">Tirupur</a></li>
+                        <li><a href="#">Erode</a></li>
+                        <li><a href="#">Coimbatore</a></li>
+                        <li><a href="#">Kangayam</a></li>
+                        <li><a href="#">Kovai Puthur</a></li>
+                        <li><a href="#">All Tamil Nadu</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Nila Wedding Management. All Rights Reserved. | Coimbatore | Kangayam | Tirupur | Erode</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="closeLightbox">&times;</span>
+            <img class="lightbox-img" id="lightboxImage" src="" alt="">
+            <div class="lightbox-nav">
+                <button class="lightbox-prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Gallery Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currentImageIndex = 0;
+        const images = Array.from(galleryItems).map(item => item.querySelector('img').src);
+        
+        // Open lightbox when image is clicked
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentImageIndex = index;
+                lightboxImage.src = images[currentImageIndex];
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close lightbox
+        closeLightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Navigate through images
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            lightboxImage.src = images[currentImageIndex];
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            lightboxImage.src = images[currentImageIndex];
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                    lightboxImage.src = images[currentImageIndex];
+                } else if (e.key === 'ArrowRight') {
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    lightboxImage.src = images[currentImageIndex];
+                }
+            }
+        });
+        
+        // Filter from category cards and footer links
+        document.querySelectorAll('[data-filter]').forEach(element => {
+            element.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') e.preventDefault();
+                const filterValue = element.getAttribute('data-filter');
+                
+                // Update filter buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                filterButtons.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === filterValue) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Scroll to gallery section
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+               function toggleSocial() {
+    document.getElementById("socialIcons").classList.toggle("active");
+}
+
+
+    </script>
+</body>
+</html>
