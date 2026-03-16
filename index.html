@@ -770,6 +770,431 @@
                 cursor: pointer;
             }
         }
+        /* Additional Responsive Enhancements for Tablet & Mobile */
+/* These styles build upon the existing media queries and ensure proper display across devices */
+
+/* Tablet Landscape (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  
+  .grid-container {
+    gap: 20px;
+  }
+  
+  .service-card {
+    width: 280px;
+  }
+  
+  .cert-logo {
+    height: 120px;
+    width: auto;
+  }
+  
+  .stat-item {
+    width: 180px;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablet Portrait & Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Header & Navigation - restructured for small screens without hiding links */
+  header {
+    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.8); /* Darker background for readability */
+  }
+  
+  .navbar {
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    font-size: 24px;
+    margin-right: auto;
+  }
+  
+  .nav-links {
+    display: flex !important; /* Override previous hide rule */
+    flex-direction: column;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 20px 0;
+    margin-top: 15px;
+    border-radius: 10px;
+    order: 3;
+  }
+  
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .nav-links a {
+    font-size: 18px;
+    display: block;
+    padding: 5px 0;
+  }
+  
+  .navbar .btn {
+    margin-left: auto;
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  
+  /* Hide the non-existent menu-toggle */
+  .menu-toggle {
+    display: none !important;
+  }
+  
+  /* Hero Section */
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 10px 25px;
+  }
+  
+  /* Stats Section */
+  .stats-container {
+    gap: 20px;
+  }
+  
+  .stat-item {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+  
+  .stat-number {
+    font-size: 2.2rem;
+  }
+  
+  /* Statue Section */
+  .statue img {
+    height: 200px;
+    width: 200px;
+  }
+  
+  .statue p {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+  
+  /* Event Grid */
+  .grid-item {
+    height: 250px;
+  }
+  
+  .grid-overlay h3 {
+    font-size: 1.2rem;
+  }
+  
+  /* Video Section */
+  .video-wrapper iframe {
+    height: 350px;
+  }
+  
+  /* Certification Section */
+  .cert-logos {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .cert-logo {
+    height: auto;
+    width: 80%;
+    max-width: 400px;
+  }
+  
+  /* Services Section */
+  .services-container {
+    gap: 20px;
+  }
+  
+  .service-card {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  /* Testimonials */
+  .testimonial {
+    padding: 20px;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem;
+  }
+  
+  .client-img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Contact Section */
+  .contact-container {
+    gap: 30px;
+  }
+  
+  .contact-info, .contact-form {
+    flex: 100%;
+  }
+  
+  /* Footer */
+  .footer-column {
+    min-width: 200px;
+    text-align: center;
+  }
+  
+  .footer-address {
+    text-align: left; /* Keep address left-aligned for readability */
+  }
+  
+  .footer-contact p {
+    justify-content: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  /* Floating Social Button */
+  .social-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .icon {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  /* Header */
+  .logo {
+    font-size: 20px;
+  }
+  
+  .navbar .btn {
+    padding: 6px 15px;
+    font-size: 12px;
+  }
+  
+  .nav-links a {
+    font-size: 16px;
+  }
+  
+  /* Hero */
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+  
+  /* Stats */
+  .stat-item {
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  /* Statue */
+  .statue img {
+    height: 150px;
+    width: 150px;
+  }
+  
+  /* Event Grid */
+  .grid-item {
+    height: 200px;
+  }
+  
+  .grid-overlay h3 {
+    font-size: 1rem;
+  }
+  
+  .grid-overlay p {
+    font-size: 0.85rem;
+  }
+  
+  /* Video Section */
+  .video-wrapper iframe {
+    height: 250px;
+  }
+  
+  /* Section Titles */
+  .section-title h2 {
+    font-size: 2rem;
+  }
+  
+  .section-title p {
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+  
+  /* Services */
+  .service-card {
+    max-width: 300px;
+  }
+  
+  .service-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  /* Testimonials */
+  .testimonial {
+    padding: 15px;
+  }
+  
+  .client-details h4 {
+    font-size: 1rem;
+  }
+  
+  /* Contact */
+  .info-item h4 {
+    font-size: 1.1rem;
+  }
+  
+  .info-item p {
+    font-size: 0.9rem;
+  }
+  
+  .form-input {
+    padding: 12px;
+  }
+  
+  /* Footer */
+  .footer-column h3 {
+    font-size: 1.3rem;
+  }
+  
+  .footer-column p, .footer-column ul li a {
+    font-size: 0.85rem;
+  }
+  
+  .footer-address p {
+    font-size: 0.8rem;
+  }
+  
+  .copyright p {
+    font-size: 0.8rem;
+  }
+  
+  /* Floating Social */
+  .social-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .social-toggle {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* Small Mobile (max-width: 375px) */
+@media (max-width: 375px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .logo {
+    font-size: 18px;
+  }
+  
+  .navbar .btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .stat-text {
+    font-size: 1rem;
+  }
+  
+  .video-wrapper iframe {
+    height: 200px;
+  }
+  
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Fix for very large screens (optional) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+  
+  .hero-content h1 {
+    font-size: 4rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.4rem;
+  }
+}
+
+/* Ensure images never overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  .nav-links a,
+  .btn,
+  .social-icon,
+  .icon,
+  .footer-column ul li a {
+    padding: 8px 0;
+    min-height: 44px; /* Better touch target */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-column ul li a {
+    justify-content: flex-start;
+    padding-left: 10px;
+  }
+  
+  .social-icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
     </style>
 </head>
 <body>
