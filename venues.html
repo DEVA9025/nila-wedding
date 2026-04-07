@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Our Venues | Nila Wedding Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -42,6 +42,15 @@
             padding: 0 20px;
         }
         
+        /* ===================== FLOATING PETALS ===================== */
+        #petal-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
         /* Header & Navigation */
         header {
             position: fixed;
@@ -62,6 +71,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
@@ -69,15 +79,18 @@
             font-size: 28px;
             font-weight: 700;
             text-decoration: none;
+            z-index: 10;
         }
         
         .logo span {
             color: var(--primary);
         }
         
+        /* Desktop Navigation */
         .nav-links {
             display: flex;
             list-style: none;
+            transition: all 0.3s ease;
         }
         
         .nav-links li {
@@ -96,6 +109,38 @@
             color: var(--primary);
         }
         
+        /* Hamburger Menu Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 20;
+            background: transparent;
+            border: none;
+            padding: 8px;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
         .btn {
             display: inline-block;
             background: var(--primary);
@@ -107,6 +152,7 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            z-index: 10;
         }
         
         .btn:hover {
@@ -645,85 +691,83 @@
             text-align: center;
         }
 
+        /* Floating Social Container */
+        .social-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
 
-          /* Floating Social Container */
-.social-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
-}
+        /* Main Toggle Button */
+        .social-toggle {
+            width: 60px;
+            height: 60px;
+            background: #b8860b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s ease;
+        }
 
-/* Main Toggle Button */
-.social-toggle {
-    width: 60px;
-    height: 60px;
-    background: #b8860b;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: 0.3s ease;
-}
+        .social-toggle:hover {
+            transform: scale(1.1);
+        }
 
-.social-toggle:hover {
-    transform: scale(1.1);
-}
+        /* Hidden Icons */
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
 
-/* Hidden Icons */
-.social-icons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    position: absolute;
-    bottom: 70px;
-    right: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.3s ease;
-}
+        /* Show when active */
+        .social-icons.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-/* Show when active */
-.social-icons.active {
-    opacity: 1;
-    pointer-events: auto;
-}
+        /* Individual Icons */
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
 
-/* Individual Icons */
-.icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
+        .icon:hover {
+            transform: scale(1.1);
+        }
 
-.icon:hover {
-    transform: scale(1.1);
-}
+        /* Platform Colors */
+        .whatsapp {
+            background: #25D366;
+        }
 
-/* Platform Colors */
-.whatsapp {
-    background: #25D366;
-}
+        .instagram {
+            background: #E4405F;
+        }
 
-.instagram {
-    background: #E4405F;
-}
-
-.youtube {
-    background: #FF0000;
-}
-
+        .youtube {
+            background: #FF0000;
+        }
         
         /* Responsive Design */
         @media (max-width: 992px) {
@@ -733,12 +777,42 @@
         }
         
         @media (max-width: 768px) {
-            .venues-hero-content h1 {
-                font-size: 2.5rem;
+            .hamburger {
+                display: flex;
             }
             
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.4s ease-in-out;
+                z-index: 15;
+                gap: 32px;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0;
+            }
+            
+            .nav-links a {
+                font-size: 18px;
+            }
+            
+            .venues-hero-content h1 {
+                font-size: 2.5rem;
             }
             
             .section-title h2 {
@@ -782,482 +856,565 @@
                 margin-bottom: 10px;
             }
         }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container navbar">
-            <a href="index.html" class="logo">Nila <span>Wedding</span> Management</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="venues.html" class="active">Venues</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <a href="#" class="btn">Get Quote</a>
+
+<!-- ====== FLOATING PETAL CANVAS ====== -->
+<canvas id="petal-canvas"></canvas>
+
+<!-- Header & Navigation -->
+<header id="mainHeader">
+    <div class="container navbar">
+        <a href="index.html" class="logo">Nila <span>Wedding</span> Management</a>
+        <button class="hamburger" id="hamburgerMenu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="venues.html" class="active">Venues</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#" class="btn">Get Quote</a>
+    </div>
+</header>
+
+<!-- Venues Hero -->
+<section class="venues-hero">
+    <div class="venues-hero-content">
+        <h1>our popular Wedding Venues </h1>
+        <p>Discover the finest marriage halls and mandapams in Kangayam, Sivanmalai, Udiyur, and surrounding areas</p>
+        <a href="#venues" class="btn">Explore Our Venues</a>
+    </div>
+</section>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+    <div class="container breadcrumb-container">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Venues</span>
+    </div>
+</section>
+
+<!-- Service Areas -->
+<section class="service-areas">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Service Areas</h2>
+            <p>We proudly serve these cities and surrounding regions</p>
         </div>
-    </header>
-
-    <!-- Venues Hero -->
-    <section class="venues-hero">
-        <div class="venues-hero-content">
-            <h1>our popular Wedding Venues </h1>
-            <p>Discover the finest marriage halls and mandapams in Kangayam, Sivanmalai, Udiyur, and surrounding areas</p>
-            <a href="#venues-grid" class="btn">Explore Our Venues</a>
+        
+        <div class="areas-container">
+            <div class="area-tag">Tirupur</div>
+            <div class="area-tag">Erode</div>
+            <div class="area-tag">Coimbatore</div>
+            <div class="area-tag">Kangayam</div>
+            <div class="area-tag">Kovai Puthur</div>
+            <div class="area-tag">Sivanmalai</div>
+            <div class="area-tag">Udiyur</div>
+            <div class="area-tag">Madurai</div>
+            <div class="area-tag">Dindukal</div>
+            <div class="area-tag">Karur</div>
+            <div class="area-tag">Namakal</div>
+            <div class="area-tag">Salem</div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-        <div class="container breadcrumb-container">
-            <a href="index.html">Home</a>
-            <span class="breadcrumb-separator">/</span>
-            <span>Venues</span>
+<!-- Venues Grid -->
+<section class="venues-grid" id="venues">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Partner Venues</h2>
+            <p>Select from our premium collection of marriage halls</p>
         </div>
-    </section>
-
-       <!-- Service Areas -->
-    <section class="service-areas">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Service Areas</h2>
-                <p>We proudly serve these cities and surrounding regions</p>
-            </div>
-            
-            <div class="areas-container">
-                <div class="area-tag">Tirupur</div>
-                <div class="area-tag">Erode</div>
-                <div class="area-tag">Coimbatore</div>
-                <div class="area-tag">Kangayam</div>
-                <div class="area-tag">Kovai Puthur</div>
-                <div class="area-tag">Sivanmalai</div>
-                <div class="area-tag">Udiyur</div>
-                <div class="area-tag">Madurai</div>
-                <div class="area-tag">Dindukal</div>
-                <div class="area-tag">Karur</div>
-                <div class="area-tag">Namakal</div>
-                <div class="area-tag">Salem</div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Venues Grid -->
-    <section class="venues-grid" id="venues">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Partner Venues</h2>
-                <p>Select from our premium collection of marriage halls</p>
-            </div>
-            
-            <div class="grid-container">
-                <!-- Saraswathi Mahal -->
-                <div class="venue-card">
-                    <div class="venue-img-container">
-                        <img src="mahal/1.webp" alt="Saraswathi Mahal" class="venue-img">
-                        <div class="venue-tag">Premium</div>
-                    </div>
-                    <div class="venue-content">
-                        <h3>Saraswathi Mahal</h3>
-                        <div class="venue-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Near Sivanmalai, Kangayam</span>
-                        </div>
-                        <div class="venue-features">
-                            <span class="feature-tag"><i class="fas fa-users"></i> 1000+ Capacity</span>
-                            <span class="feature-tag"><i class="fas fa-snowflake"></i> AC Hall</span>
-                            <span class="feature-tag"><i class="fas fa-utensils"></i> Dining Area</span>
-                        </div>
-                        <p class="venue-description">One of the most prestigious marriage halls in Kangayam, featuring a spacious AC hall, modern amenities, and beautiful decor options. Ideal for large weddings and functions.</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
+        
+        <div class="grid-container">
+            <!-- Saraswathi Mahal -->
+            <div class="venue-card">
+                <div class="venue-img-container">
+                    <img src="mahal/1.webp" alt="Saraswathi Mahal" class="venue-img">
+                    <div class="venue-tag">Premium</div>
                 </div>
-                
-                <!-- Venkateshwara Mahal -->
-                <div class="venue-card">
-                    <div class="venue-img-container">
-                        <img src="mahal/2.webp" alt="Venkateshwara Mahal" class="venue-img">
-                        <div class="venue-tag">Popular</div>
-                    </div>
-                    <div class="venue-content">
-                        <h3>Venkateshwara Mahal</h3>
-                        <div class="venue-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Udiyur, Kangayam</span>
-                        </div>
-                        <div class="venue-features">
-                            <span class="feature-tag"><i class="fas fa-users"></i> 800+ Capacity</span>
-                            <span class="feature-tag"><i class="fas fa-car"></i> Ample Parking</span>
-                            <span class="feature-tag"><i class="fas fa-bed"></i> Guest Rooms</span>
-                        </div>
-                        <p class="venue-description">A beautifully designed marriage hall with traditional architecture and modern facilities. Features a large dining area, guest accommodations, and excellent parking facilities.</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
-                </div>
-                
-                <!-- Shri Maharaja mahal -->
-                <div class="venue-card">
-                    <div class="venue-img-container">
-                        <img src="mahal/3.webp" alt="Shri Maharaja mahal" class="venue-img">
-                        <div class="venue-tag">Economy</div>
-                    </div>
-                    <div class="venue-content">
-                        <h3>Shri Maharaja mahal</h3>
-                        <div class="venue-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Kangayam Town</span>
-                        </div>
-                        <div class="venue-features">
-                            <span class="feature-tag"><i class="fas fa-users"></i> 600 Capacity</span>
-                            <span class="feature-tag"><i class="fas fa-utensils"></i> Kitchen Facility</span>
-                            <span class="feature-tag"><i class="fas fa-music"></i> Stage & Sound</span>
-                        </div>
-                        <p class="venue-description">A well-maintained marriage hall in the heart of Kangayam, offering excellent value with complete wedding facilities including a modern kitchen and professional sound system.</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
-                </div>
-                
-                <!-- NSN Thirumana Mandapam -->
-                <div class="venue-card">
-                    <div class="venue-img-container">
-                        <img src="mahal/4.webp" alt="NSN Thirumana Mandapam" class="venue-img">
-                        <div class="venue-tag">Premium</div>
-                    </div>
-                    <div class="venue-content">
-                        <h3>NSN Thirumana Mandapam</h3>
-                        <div class="venue-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Sivanmalai Road, Kangayam</span>
-                        </div>
-                        <div class="venue-features">
-                            <span class="feature-tag"><i class="fas fa-users"></i> 1200+ Capacity</span>
-                            <span class="feature-tag"><i class="fas fa-snowflake"></i> Central AC</span>
-                            <span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>
-                        </div>
-                        <p class="venue-description">A luxurious marriage mandapam with state-of-the-art facilities including central AC, elegant decor options, and professional event management services. Perfect for destination weddings.</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
-                </div>
-                
-                <!-- Kva Thirumana Mahal -->
-                <div class="venue-card">
-                    <div class="venue-img-container">
-                        <img src="mahal/5.webp" alt="Kva Thirumana Mahal" class="venue-img">
-                        <div class="venue-tag">Popular</div>
-                    </div>
-                    <div class="venue-content">
-                        <h3>Kva Thirumana Mahal</h3>
-                        <div class="venue-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Pothiapalayam, Kangayam</span>
-                        </div>
-                        <div class="venue-features">
-                            <span class="feature-tag"><i class="fas fa-users"></i> 900 Capacity</span>
-                            <span class="feature-tag"><i class="fas fa-swimming-pool"></i> Garden Area</span>
-                            <span class="feature-tag"><i class="fas fa-camera"></i> Photo Zones</span>
-                        </div>
-                        <p class="venue-description">Features a beautiful garden area and outdoor spaces perfect for pre-wedding photoshoots and outdoor ceremonies. The hall is spacious with modern amenities and decor options.</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
-                </div>
-                
-                <!-- K.K. Mahal -->
-                <div class="venue-card">
-                    <div class="venue-img-container">
-                        <img src="mahal/6.webp" alt="K.K. Mahal" class="venue-img">
-                        <div class="venue-tag">Economy</div>
-                    </div>
-                    <div class="venue-content">
-                        <h3>K.K. Mahal</h3>
-                        <div class="venue-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Near Bus Stand, Kangayam</span>
-                        </div>
-                        <div class="venue-features">
-                            <span class="feature-tag"><i class="fas fa-users"></i> 700 Capacity</span>
-                            <span class="feature-tag"><i class="fas fa-tv"></i> LED Screens</span>
-                            <span class="feature-tag"><i class="fas fa-parking"></i> Valet Parking</span>
-                        </div>
-                        <p class="venue-description">Conveniently located near the bus stand, this venue offers excellent accessibility for guests. Features modern amenities including LED screens and valet parking services.</p>
-                        <a href="#" class="btn">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Facilities Section -->
-    <section class="facilities">
-        <div class="container">
-            <div class="section-title">
-                <h2>Venue Facilities</h2>
-                <p>Premium amenities available at our partner venues</p>
-            </div>
-            
-            <div class="facilities-container">
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-snowflake"></i>
-                    </div>
-                    <h4>Air Conditioning</h4>
-                    <p>Fully air-conditioned halls for comfort in all seasons</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h4>Dining Areas</h4>
-                    <p>Spacious dining areas with catering facilities</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-bed"></i>
-                    </div>
-                    <h4>Guest Rooms</h4>
-                    <p>Comfortable accommodations for guests and family</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <h4>Ample Parking</h4>
-                    <p>Secure parking space for hundreds of vehicles</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <h4>Free WiFi</h4>
-                    <p>High-speed internet access for guests</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h4>Sound Systems</h4>
-                    <p>Professional audio systems for ceremonies</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h4>Power Backup</h4>
-                    <p>Uninterrupted power supply with generators</p>
-                </div>
-                
-                <div class="facility-item">
-                    <div class="facility-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4>Security</h4>
-                    <p>24/7 security personnel and CCTV surveillance</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Offices Section -->
-    <section class="offices">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Offices</h2>
-                <p>Visit us at any of our convenient locations</p>
-            </div>
-            
-            <div class="offices-container">
-                <div class="office-card">
-                    <h3>Coimbatore Office</h3>
-                    <div class="office-address">
+                <div class="venue-content">
+                    <h3>Saraswathi Mahal</h3>
+                    <div class="venue-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        Ganapathy Layout, KK Nagar, Saibaba Colony<br>
-                        Coimbatore - 641006
+                        <span>Near Sivanmalai, Kangayam</span>
                     </div>
-                    <div class="office-contact">
-                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                        <p><i class="fas fa-envelope"></i> coimbatore@nilawedding.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                    <div class="venue-features">
+                        <span class="feature-tag"><i class="fas fa-users"></i> 1000+ Capacity</span>
+                        <span class="feature-tag"><i class="fas fa-snowflake"></i> AC Hall</span>
+                        <span class="feature-tag"><i class="fas fa-utensils"></i> Dining Area</span>
                     </div>
+                    <p class="venue-description">One of the most prestigious marriage halls in Kangayam, featuring a spacious AC hall, modern amenities, and beautiful decor options. Ideal for large weddings and functions.</p>
+                    <a href="#" class="btn">View Details</a>
                 </div>
-                
-                <div class="office-card">
-                    <h3>Kangayam Office</h3>
-                    <div class="office-address">
+            </div>
+            
+            <!-- Venkateshwara Mahal -->
+            <div class="venue-card">
+                <div class="venue-img-container">
+                    <img src="mahal/2.webp" alt="Venkateshwara Mahal" class="venue-img">
+                    <div class="venue-tag">Popular</div>
+                </div>
+                <div class="venue-content">
+                    <h3>Venkateshwara Mahal</h3>
+                    <div class="venue-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        Dharapuram Road, Near Power Office<br>
-                        Kangayam - 638701
+                        <span>Udiyur, Kangayam</span>
                     </div>
-                    <div class="office-contact">
-                        <p><i class="fas fa-phone"></i> +91 98765 43211</p>
-                        <p><i class="fas fa-envelope"></i> kangayam@nilawedding.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                    <div class="venue-features">
+                        <span class="feature-tag"><i class="fas fa-users"></i> 800+ Capacity</span>
+                        <span class="feature-tag"><i class="fas fa-car"></i> Ample Parking</span>
+                        <span class="feature-tag"><i class="fas fa-bed"></i> Guest Rooms</span>
                     </div>
+                    <p class="venue-description">A beautifully designed marriage hall with traditional architecture and modern facilities. Features a large dining area, guest accommodations, and excellent parking facilities.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <!-- Shri Maharaja mahal -->
+            <div class="venue-card">
+                <div class="venue-img-container">
+                    <img src="mahal/3.webp" alt="Shri Maharaja mahal" class="venue-img">
+                    <div class="venue-tag">Economy</div>
+                </div>
+                <div class="venue-content">
+                    <h3>Shri Maharaja mahal</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kangayam Town</span>
+                    </div>
+                    <div class="venue-features">
+                        <span class="feature-tag"><i class="fas fa-users"></i> 600 Capacity</span>
+                        <span class="feature-tag"><i class="fas fa-utensils"></i> Kitchen Facility</span>
+                        <span class="feature-tag"><i class="fas fa-music"></i> Stage & Sound</span>
+                    </div>
+                    <p class="venue-description">A well-maintained marriage hall in the heart of Kangayam, offering excellent value with complete wedding facilities including a modern kitchen and professional sound system.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <!-- NSN Thirumana Mandapam -->
+            <div class="venue-card">
+                <div class="venue-img-container">
+                    <img src="mahal/4.webp" alt="NSN Thirumana Mandapam" class="venue-img">
+                    <div class="venue-tag">Premium</div>
+                </div>
+                <div class="venue-content">
+                    <h3>NSN Thirumana Mandapam</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Sivanmalai Road, Kangayam</span>
+                    </div>
+                    <div class="venue-features">
+                        <span class="feature-tag"><i class="fas fa-users"></i> 1200+ Capacity</span>
+                        <span class="feature-tag"><i class="fas fa-snowflake"></i> Central AC</span>
+                        <span class="feature-tag"><i class="fas fa-wifi"></i> Free WiFi</span>
+                    </div>
+                    <p class="venue-description">A luxurious marriage mandapam with state-of-the-art facilities including central AC, elegant decor options, and professional event management services. Perfect for destination weddings.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <!-- Kva Thirumana Mahal -->
+            <div class="venue-card">
+                <div class="venue-img-container">
+                    <img src="mahal/5.webp" alt="Kva Thirumana Mahal" class="venue-img">
+                    <div class="venue-tag">Popular</div>
+                </div>
+                <div class="venue-content">
+                    <h3>Kva Thirumana Mahal</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Pothiapalayam, Kangayam</span>
+                    </div>
+                    <div class="venue-features">
+                        <span class="feature-tag"><i class="fas fa-users"></i> 900 Capacity</span>
+                        <span class="feature-tag"><i class="fas fa-swimming-pool"></i> Garden Area</span>
+                        <span class="feature-tag"><i class="fas fa-camera"></i> Photo Zones</span>
+                    </div>
+                    <p class="venue-description">Features a beautiful garden area and outdoor spaces perfect for pre-wedding photoshoots and outdoor ceremonies. The hall is spacious with modern amenities and decor options.</p>
+                    <a href="#" class="btn">View Details</a>
+                </div>
+            </div>
+            
+            <!-- K.K. Mahal -->
+            <div class="venue-card">
+                <div class="venue-img-container">
+                    <img src="mahal/6.webp" alt="K.K. Mahal" class="venue-img">
+                    <div class="venue-tag">Economy</div>
+                </div>
+                <div class="venue-content">
+                    <h3>K.K. Mahal</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Near Bus Stand, Kangayam</span>
+                    </div>
+                    <div class="venue-features">
+                        <span class="feature-tag"><i class="fas fa-users"></i> 700 Capacity</span>
+                        <span class="feature-tag"><i class="fas fa-tv"></i> LED Screens</span>
+                        <span class="feature-tag"><i class="fas fa-parking"></i> Valet Parking</span>
+                    </div>
+                    <p class="venue-description">Conveniently located near the bus stand, this venue offers excellent accessibility for guests. Features modern amenities including LED screens and valet parking services.</p>
+                    <a href="#" class="btn">View Details</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-        <!-- Location Map -->
-    <section class="location-map">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Venue Locations</h2>
-                <p>Prime locations across Kangayam and surrounding areas</p>
+<!-- Facilities Section -->
+<section class="facilities">
+    <div class="container">
+        <div class="section-title">
+            <h2>Venue Facilities</h2>
+            <p>Premium amenities available at our partner venues</p>
+        </div>
+        
+        <div class="facilities-container">
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <h4>Air Conditioning</h4>
+                <p>Fully air-conditioned halls for comfort in all seasons</p>
             </div>
             
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62651.0874564121!2d77.55377517341379!3d11.003863159276286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9ab6eb26b0d7d%3A0x649fa885a2cc71ba!2sKangayam%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1708285838422!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h4>Dining Areas</h4>
+                <p>Spacious dining areas with catering facilities</p>
+            </div>
+            
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <h4>Guest Rooms</h4>
+                <p>Comfortable accommodations for guests and family</p>
+            </div>
+            
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h4>Ample Parking</h4>
+                <p>Secure parking space for hundreds of vehicles</p>
+            </div>
+            
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h4>Free WiFi</h4>
+                <p>High-speed internet access for guests</p>
+            </div>
+            
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h4>Sound Systems</h4>
+                <p>Professional audio systems for ceremonies</p>
+            </div>
+            
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h4>Power Backup</h4>
+                <p>Uninterrupted power supply with generators</p>
+            </div>
+            
+            <div class="facility-item">
+                <div class="facility-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Security</h4>
+                <p>24/7 security personnel and CCTV surveillance</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Offices Section -->
+<section class="offices">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Offices</h2>
+            <p>Visit us at any of our convenient locations</p>
+        </div>
+        
+        <div class="offices-container">
+            <div class="office-card">
+                <h3>Coimbatore Office</h3>
+                <div class="office-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ganapathy Layout, KK Nagar, Saibaba Colony<br>
+                    Coimbatore - 641006
+                </div>
+                <div class="office-contact">
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> coimbatore@nilawedding.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
             
-     <!-- Floating Social Button -->
+            <div class="office-card">
+                <h3>Kangayam Office</h3>
+                <div class="office-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Dharapuram Road, Near Power Office<br>
+                    Kangayam - 638701
+                </div>
+                <div class="office-contact">
+                    <p><i class="fas fa-phone"></i> +91 98765 43211</p>
+                    <p><i class="fas fa-envelope"></i> kangayam@nilawedding.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location Map -->
+<section class="location-map">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Venue Locations</h2>
+            <p>Prime locations across Kangayam and surrounding areas</p>
+        </div>
+        
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62651.0874564121!2d77.55377517341379!3d11.003863159276286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9ab6eb26b0d7d%3A0x649fa885a2cc71ba!2sKangayam%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1708285838422!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+            
+<!-- Floating Social Button -->
 <div class="social-container">
     <div class="social-toggle" onclick="toggleSocial()">
         <i class="fas fa-share-alt"></i>
     </div>
-
     <div class="social-icons" id="socialIcons">
         <a href="https://wa.me/919865733444" target="_blank" class="icon whatsapp">
             <i class="fab fa-whatsapp"></i>
         </a>
-
         <a href="https://www.instagram.com/nila__wedding_planners/" target="_blank" class="icon instagram">
             <i class="fab fa-instagram"></i>
         </a>
-
         <a href="http://www.youtube.com/@Nilawedding" target="_blank" class="icon youtube">
             <i class="fab fa-youtube"></i>
         </a>
     </div>
 </div>
- 
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Nila Wedding Management</h3>
-                    <p>Professional wedding management services across Tamilnadu. Making your special occasions truly memorable.</p>
-                    
-                    <div class="footer-address">
-                        <h4>Our Offices:</h4>
-                        <p><strong>Coimbatore:</strong> Ganapathy Layout, KK Nagar, Saibaba Colony</p>
-                        <p><strong>Kangayam:</strong> Dharapuram Road, Near Power Office</p>
-                    </div>
-                    
-                    <div class="footer-contact">
-                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                        <p><i class="fas fa-envelope"></i> info@nilawedding.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</p>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                    </div>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Nila Wedding Management</h3>
+                <p>Professional wedding management services across Tamilnadu. Making your special occasions truly memorable.</p>
+                
+                <div class="footer-address">
+                    <h4>Our Offices:</h4>
+                    <p><strong>Coimbatore:</strong> Ganapathy Layout, KK Nagar, Saibaba Colony</p>
+                    <p><strong>Kangayam:</strong> Dharapuram Road, Near Power Office</p>
                 </div>
                 
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="hello.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="#">Venues</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+                <div class="footer-contact">
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@nilawedding.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</p>
                 </div>
                 
-                <div class="footer-column">
-                    <h3>Our Venues</h3>
-                    <ul>
-                        <li><a href="#">Saraswathi Mahal</a></li>
-                        <li><a href="#">Venkateshwara Mahal</a></li>
-                        <li><a href="#">Sri Kumaran Mahal</a></li>
-                        <li><a href="#">NSN Thirumana Mandapam</a></li>
-                        <li><a href="#">Kva Thirumana Mahal</a></li>
-                        <li><a href="#">K.K. Mahal</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Service Areas</h3>
-                    <ul>
-                        <li><a href="#">Tirupur</a></li>
-                        <li><a href="#">Erode</a></li>
-                        <li><a href="#">Coimbatore</a></li>
-                        <li><a href="#">Kangayam</a></li>
-                        <li><a href="#">Kovai Puthur</a></li>
-                        <li><a href="#">All Tamil Nadu</a></li>
-                    </ul>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 Nila Wedding Management. All Rights Reserved. | Coimbatore | Kangayam | Tirupur | Erode</p>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Our Venues</h3>
+                <ul>
+                    <li><a href="#">Saraswathi Mahal</a></li>
+                    <li><a href="#">Venkateshwara Mahal</a></li>
+                    <li><a href="#">Sri Kumaran Mahal</a></li>
+                    <li><a href="#">NSN Thirumana Mandapam</a></li>
+                    <li><a href="#">Kva Thirumana Mahal</a></li>
+                    <li><a href="#">K.K. Mahal</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Service Areas</h3>
+                <ul>
+                    <li><a href="#">Tirupur</a></li>
+                    <li><a href="#">Erode</a></li>
+                    <li><a href="#">Coimbatore</a></li>
+                    <li><a href="#">Kangayam</a></li>
+                    <li><a href="#">Kovai Puthur</a></li>
+                    <li><a href="#">All Tamil Nadu</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Nila Wedding Management. All Rights Reserved. | Coimbatore | Kangayam | Tirupur | Erode</p>
+        </div>
+    </div>
+</footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+<script>
+    /* ===== FLOATING PETALS CANVAS ===== */
+    (function() {
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        let W = window.innerWidth, H = window.innerHeight;
+        canvas.width = W; canvas.height = H;
+
+        window.addEventListener('resize', () => {
+            W = window.innerWidth; H = window.innerHeight;
+            canvas.width = W; canvas.height = H;
+        });
+
+        const petalEmojis = ['🌸', '🌺', '🌼', '🌹', '💮', '🏵️'];
+        const petals = [];
+        for (let i = 0; i < 22; i++) {
+            petals.push({
+                x: Math.random() * W,
+                y: Math.random() * H - H,
+                size: 14 + Math.random() * 18,
+                speed: 0.5 + Math.random() * 1.2,
+                drift: (Math.random() - 0.5) * 0.8,
+                rot: Math.random() * 360,
+                rotSpeed: (Math.random() - 0.5) * 2,
+                emoji: petalEmojis[Math.floor(Math.random() * petalEmojis.length)],
+                opacity: 0.4 + Math.random() * 0.5,
+                delay: Math.random() * 8000
+            });
+        }
+        let start = null;
+        function animate(ts) {
+            if (!start) start = ts;
+            ctx.clearRect(0, 0, W, H);
+            petals.forEach(p => {
+                if (ts - start < p.delay) return;
+                p.y += p.speed;
+                p.x += p.drift + Math.sin(p.y / 80) * 0.4;
+                p.rot += p.rotSpeed;
+                if (p.y > H + 30) {
+                    p.y = -30;
+                    p.x = Math.random() * W;
+                }
+                ctx.save();
+                ctx.globalAlpha = p.opacity;
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot * Math.PI / 180);
+                ctx.font = p.size + 'px serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(p.emoji, 0, 0);
+                ctx.restore();
+            });
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    })();
+
+    /* ===== HEADER SCROLL EFFECT ===== */
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    /* ===== SMOOTH SCROLLING ===== */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if(this.getAttribute('href') === '#') return;
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
             }
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
+    });
+    
+    /* ===== FLOATING SOCIAL TOGGLE ===== */
+    function toggleSocial() {
+        document.getElementById("socialIcons").classList.toggle("active");
+    }
+    
+    /* ===== MOBILE HAMBURGER MENU ===== */
+    (function() {
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.getElementById('navLinks');
+        const body = document.body;
+
+        function toggleMenu() {
+            if (!hamburger || !navLinks) return;
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        }
+
+        function closeMenu() {
+            if (hamburger && navLinks) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        }
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', toggleMenu);
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                    closeMenu();
                 }
             });
-        });
-        
-        // Form submission
-        document.getElementById('venueInquiryForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your inquiry! We will contact you shortly.');
-            this.reset();
-        });
-
-
-     
-                function toggleSocial() {
-    document.getElementById("socialIcons").classList.toggle("active");
-}
-
-
-    </script>
+        }
+    })();
+</script>
 </body>
 </html>

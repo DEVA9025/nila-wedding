@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | Nila Wedding Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Our Services | Nila Wedding Management | Professional Event Planners</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #B8860B;
-            --primary-light: #DAA520;
+            --gold: #B8860B;
+            --gold-light: #DAA520;
+            --gold-pale: #F5D97E;
             --dark: #1A1A1A;
-            --light: #F8F8F8;
-            --gray: #666;
+            --dark-rich: #0D0A06;
+            --cream: #FFF8EE;
+            --blush: #FFE4EC;
+            --rose: #C0304A;
+            --rose-light: #E8597A;
+            --petal-pink: #FFB7C5;
+            --leaf-green: #4A6741;
             --light-bg: #FFF9E6;
+            --gray: #666;
         }
         
         * {
@@ -27,11 +34,11 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background-color: #fff;
+            background: var(--cream);
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
         }
         
@@ -39,7 +46,16 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
+        }
+        
+        /* ===================== FLOATING PETALS ===================== */
+        #petal-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 100;
         }
         
         /* Header & Navigation */
@@ -48,70 +64,130 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
+            z-index: 500;
             padding: 20px 0;
-            transition: all 0.3s ease;
-            background: rgba(0, 0, 0, 0.9);
+            transition: all 0.4s ease;
+            background: rgba(13, 10, 6, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(184,134,11,0.2);
         }
         
         header.scrolled {
-            padding: 15px 0;
+            padding: 14px 0;
         }
         
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
             color: white;
-            font-size: 28px;
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
             font-weight: 700;
             text-decoration: none;
+            letter-spacing: 1px;
+            z-index: 10;
         }
         
         .logo span {
-            color: var(--primary);
+            color: var(--gold-light);
         }
         
+        /* Desktop Navigation */
         .nav-links {
             display: flex;
             list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
             transition: all 0.3s ease;
         }
         
+        .nav-links li {
+            margin-left: 28px;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold-light);
+            transition: width 0.3s;
+        }
+        
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--gold-light);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hamburger Menu Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 20;
+            background: transparent;
+            border: none;
+            padding: 8px;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
         
         .btn {
             display: inline-block;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 11px 28px;
+            border-radius: 40px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            border: 1px solid var(--gold-pale);
+            z-index: 10;
         }
         
         .btn:hover {
-            background: var(--primary-light);
-            transform: translateY(-3px);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-pale));
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(184,134,11,0.4);
         }
         
         /* Service Hero */
@@ -136,14 +212,16 @@
         }
         
         .service-hero-content h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .service-hero-content p {
             font-size: 1.2rem;
             margin-bottom: 30px;
+            opacity: 0.9;
         }
         
         /* Breadcrumb */
@@ -164,7 +242,7 @@
         }
         
         .breadcrumb a:hover {
-            color: var(--primary);
+            color: var(--gold);
         }
         
         .breadcrumb-separator {
@@ -184,9 +262,10 @@
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--dark);
             margin-bottom: 15px;
+            font-weight: 600;
         }
         
         .section-title p {
@@ -195,16 +274,37 @@
             margin: 0 auto;
         }
         
+        .title-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .title-ornament .line {
+            width: 60px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+        
+        .title-ornament .line:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+        
+        .title-ornament .flower {
+            font-size: 1.1rem;
+        }
+        
         .categories-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
         
         .category-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
@@ -215,13 +315,24 @@
         
         .category-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(184,134,11,0.15);
+            border-bottom: 3px solid var(--gold);
         }
         
-        .category-img {
-            height: 200px;
+        .category-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .category-image img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
         }
         
         .category-content {
@@ -235,18 +346,14 @@
             margin-bottom: 15px;
             font-size: 1.5rem;
             color: var(--dark);
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .category-content p {
             margin-bottom: 20px;
             color: var(--gray);
             flex-grow: 1;
-        }
-        
-        .category-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
         
         /* Service Details */
@@ -263,7 +370,7 @@
         }
         
         .details-image {
-            border-radius: 10px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
@@ -278,6 +385,7 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             color: var(--dark);
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .details-content p {
@@ -300,7 +408,7 @@
             content: "\f00c";
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
-            color: var(--primary);
+            color: var(--gold);
             position: absolute;
             left: 0;
         }
@@ -319,7 +427,7 @@
         
         .pricing-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
@@ -330,8 +438,9 @@
         }
         
         .pricing-card.featured {
-            border-color: var(--primary);
-            transform: scale(1.05);
+            border-color: var(--gold);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(184,134,11,0.2);
         }
         
         .pricing-card.featured:before {
@@ -339,11 +448,12 @@
             position: absolute;
             top: 0;
             right: 0;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: white;
             padding: 5px 15px;
-            font-size: 0.8rem;
-            border-radius: 0 0 0 10px;
+            font-size: 0.7rem;
+            border-radius: 0 0 0 4px;
+            letter-spacing: 1px;
         }
         
         .pricing-card:hover {
@@ -352,7 +462,7 @@
         }
         
         .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
+            transform: scale(1.02) translateY(-10px);
         }
         
         .pricing-header {
@@ -362,13 +472,15 @@
         .pricing-header h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
         }
         
         .price {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--gold);
             font-weight: 700;
             margin-bottom: 5px;
+            font-family: 'Cinzel', serif;
         }
         
         .price span {
@@ -384,6 +496,7 @@
         .pricing-features li {
             padding: 8px 0;
             border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
         }
         
         .pricing-features li:last-child {
@@ -410,19 +523,18 @@
         }
         
         .process-step:not(:last-child):after {
-            content: "";
+            content: "🌸";
             position: absolute;
-            top: 40px;
+            top: 30px;
             right: -30px;
-            width: 60px;
-            height: 2px;
-            background: var(--primary);
+            font-size: 1.2rem;
+            color: var(--gold);
         }
         
         .step-number {
             width: 80px;
             height: 80px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: white;
             border-radius: 50%;
             display: flex;
@@ -431,378 +543,453 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin: 0 auto 20px;
+            font-family: 'Cinzel', serif;
         }
         
         .step-content h4 {
             margin-bottom: 10px;
             font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
         }
         
         /* CTA */
         .service-cta {
             padding: 80px 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('banner/2.jpg');
+            background: linear-gradient(rgba(13,10,6,0.9), rgba(13,10,6,0.9)), url('banner/2.jpg');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         
         .cta-content h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .cta-content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0.9;
         }
         
         /* Footer */
-       /* Footer CSS */
-    footer {
-        background: var(--dark);
-        color: white;
-        padding: 50px 0 20px;
-    }
-    
-    .footer-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 30px;
-        margin-bottom: 30px;
-    }
-    
-    .footer-column {
-        flex: 1;
-        min-width: 250px;
-    }
-    
-    .footer-column h3 {
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-        color: white;
-    }
-    
-    .footer-column p {
-        margin-bottom: 15px;
-        color: #ddd;
-        font-size: 0.95rem;
-    }
-    
-    .footer-address {
-        margin: 20px 0;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
-    }
-    
-    .footer-address h4 {
-        color: var(--primary);
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-    }
-    
-    .footer-address p {
-        margin-bottom: 8px;
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    
-    .footer-address strong {
-        color: var(--primary-light);
-        display: inline-block;
-        min-width: 90px;
-    }
-    
-    .footer-contact {
-        margin-bottom: 20px;
-    }
-    
-    .footer-contact p {
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        color: #ddd;
-    }
-    
-    .footer-contact i {
-        color: var(--primary);
-        margin-right: 10px;
-        width: 20px;
-    }
-    
-    .footer-column ul {
-        list-style: none;
-    }
-    
-    .footer-column ul li {
-        margin-bottom: 10px;
-    }
-    
-    .footer-column ul li a {
-        color: #ddd;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-size: 0.95rem;
-    }
-    
-    .footer-column ul li a:hover {
-        color: var(--primary);
-        padding-left: 5px;
-    }
-    
-    .social-links {
-        display: flex;
-        gap: 15px;
-        margin-top: 20px;
-    }
-    
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    
-    .social-icon:hover {
-        background: var(--primary);
-        transform: translateY(-3px);
-    }
-    
-    .copyright {
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
-        font-size: 0.9rem;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
+        footer {
+            background: var(--dark-rich);
+            color: white;
+            padding: 60px 0 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold-pale), var(--gold), transparent);
+        }
+        
+        .footer-flower-bg {
+            position: absolute; inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.04;
+        }
+        
+        .footer-flower-bg span {
+            position: absolute;
+            font-size: 4rem;
+        }
+        
         .footer-content {
-            flex-direction: column;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
         }
         
         .footer-column {
-            text-align: center;
+            flex: 1;
+            min-width: 220px;
         }
         
-        .footer-contact p {
-            justify-content: center;
+        .footer-column h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--gold-pale);
+            letter-spacing: 1px;
         }
         
-        .social-links {
-            justify-content: center;
+        .footer-column p {
+            margin-bottom: 12px;
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.7;
         }
         
         .footer-address {
-            text-align: left;
+            margin: 18px 0;
+            padding: 16px;
+            background: rgba(255,255,255,0.05);
+            border-left: 2px solid var(--gold);
+            border-radius: 0 4px 4px 0;
         }
         
-        .footer-column ul li a:hover {
-            padding-left: 0;
+        .footer-address h4 {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
         }
-    }
-    
-    @media (max-width: 576px) {
+        
         .footer-address p {
             font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+        
+        .footer-address strong {
+            color: var(--gold-light);
         }
         
         .footer-contact p {
-            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.88rem;
+        }
+        
+        .footer-contact i {
+            color: var(--gold);
+            margin-right: 10px;
+            width: 16px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-column ul li a::before {
+            content: '✦ ';
+            font-size: 8px;
+            color: var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--gold-light);
+            padding-left: 8px;
+        }
+        
+        .footer-column ul li a:hover::before {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(184,134,11,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .social-icon:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-3px);
         }
         
         .copyright {
-            font-size: 0.8rem;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 2;
         }
-    }
-
-      /* Floating Social Container */
-.social-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
-}
-
-/* Main Toggle Button */
-.social-toggle {
-    width: 60px;
-    height: 60px;
-    background: #b8860b;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: 0.3s ease;
-}
-
-.social-toggle:hover {
-    transform: scale(1.1);
-}
-
-/* Hidden Icons */
-.social-icons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    position: absolute;
-    bottom: 70px;
-    right: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.3s ease;
-}
-
-/* Show when active */
-.social-icons.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Individual Icons */
-.icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.icon:hover {
-    transform: scale(1.1);
-}
-
-/* Platform Colors */
-.whatsapp {
-    background: #25D366;
-}
-
-.instagram {
-    background: #E4405F;
-}
-
-.youtube {
-    background: #FF0000;
-}
-
-
+        
+        /* Floating Social */
+        .social-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 400;
+        }
+        
+        .social-toggle {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(184,134,11,0.5);
+            transition: 0.3s ease;
+        }
+        
+        .social-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+        
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+        
+        .social-icons.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+        }
+        
+        .icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp { background: #25D366; }
+        .instagram { background: #E4405F; }
+        .youtube { background: #FF0000; }
+        
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .process-step:not(:last-child):after {
                 display: none;
             }
-            
             .pricing-card.featured {
                 transform: none;
             }
-            
             .pricing-card.featured:hover {
                 transform: translateY(-10px);
             }
         }
         
         @media (max-width: 768px) {
-            .service-hero-content h1 {
-                font-size: 2.5rem;
+            .hamburger {
+                display: flex;
             }
-            
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(13, 10, 6, 0.98);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.4s ease-in-out;
+                z-index: 15;
+                gap: 32px;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
             }
-            
-            .section-title h2 {
-                font-size: 2rem;
+            .nav-links.active {
+                right: 0;
             }
-        }
-        
-        @media (max-width: 576px) {
+            .nav-links li {
+                margin: 0;
+            }
+            .nav-links a {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
             .service-hero {
                 height: 50vh;
                 margin-top: 70px;
             }
-            
+            .service-hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .categories-container {
+                grid-template-columns: 1fr;
+            }
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+            .footer-column {
+                text-align: center;
+            }
+            .footer-contact p {
+                justify-content: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .process-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .process-step {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        
+        @media (max-width: 576px) {
             .service-hero-content h1 {
                 font-size: 2rem;
             }
-            
-            .categories-container, .pricing-container {
+            .service-hero-content p {
+                font-size: 1rem;
+            }
+            .details-container {
                 grid-template-columns: 1fr;
             }
+            .btn {
+                padding: 8px 18px;
+                font-size: 11px;
+            }
+        }
+        
+        body.menu-open {
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container navbar">
-            <a href="hello.html" class="logo">Nila <span>Wedding</span> Management</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="service.html" class="active">Services</a></li>
-                <li><a href="venues.html">Venues</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <a href="#" class="btn">Get Quote</a>
-        </div>
-    </header>
 
-    <!-- Service Hero -->
-    <section class="service-hero">
-        <div class="service-hero-content">
-            <h1>Our Premium Wedding Services</h1>
-            <p>Comprehensive wedding planning and management services to make your special day unforgettable</p>
-            <a href="#contact" class="btn">Book a Consultation</a>
-        </div>
-    </section>
+<!-- ====== FLOATING PETAL CANVAS ====== -->
+<canvas id="petal-canvas"></canvas>
 
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-        <div class="container breadcrumb-container">
-            <a href="hello.html">Home</a>
-            <span class="breadcrumb-separator">/</span>
-            <span>Services</span>
-        </div>
-    </section>
+<!-- Header & Navigation -->
+<header id="mainHeader">
+    <div class="container navbar">
+        <a href="index.html" class="logo">Nila <span>Wedding</span> Management</a>
+        <button class="hamburger" id="hamburgerMenu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="venues.html">Venues</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn">Get Quote</a>
+    </div>
+</header>
 
-  <!-- Service Categories with Images -->
+<!-- Service Hero -->
+<section class="service-hero">
+    <div class="service-hero-content">
+        <h1>Our Premium Wedding Services</h1>
+        <p>Comprehensive wedding planning and management services to make your special day unforgettable</p>
+        <a href="#contact" class="btn">Book a Consultation</a>
+    </div>
+</section>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+    <div class="container breadcrumb-container">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Services</span>
+    </div>
+</section>
+
+<!-- Service Categories with Images -->
 <section class="service-categories">
     <div class="container">
-        <div class="section-title">
+        <div class="section-title reveal">
             <h2>Our Wedding Services</h2>
+            <div class="title-ornament">
+                <div class="line"></div>
+                <span class="flower">🌸</span>
+                <div class="line"></div>
+            </div>
             <p>We offer a comprehensive range of services to cover every aspect of your wedding</p>
         </div>
         
         <div class="categories-container">
-            <div class="category-card">
-                
+            <div class="category-card reveal">
                 <div class="category-image">
-                    <img src="enai seer/5.jpg" height="200" width="400" alt="Wedding Planning">
+                    <img src="enai seer/5.jpg" alt="Wedding Planning">
                 </div>
-               
                 <div class="category-content">
                     <h3>Wedding Planning</h3>
                     <p>Complete wedding planning from concept to execution. We handle everything from venue selection to vendor coordination, timeline management, and budget planning.</p>
@@ -810,12 +997,10 @@
                 </div>
             </div>
             
-            <div class="category-card">
-            
+            <div class="category-card reveal">
                 <div class="category-image">
-                    <img src="mukortham stage/1.jpg" height="200" alt="Stage & Venue Decor">
+                    <img src="mukortham stage/1.jpg" alt="Stage & Venue Decor">
                 </div>
-               
                 <div class="category-content">
                     <h3>Stage & Venue Decor</h3>
                     <p>Breathtaking stage designs and venue decorations that reflect your personality. We specialize in traditional Tamilnadu wedding stages, floral arrangements, and thematic decor.</p>
@@ -823,286 +1008,285 @@
                 </div>
             </div>
             
-            <div class="category-card">
-               
+            <div class="category-card reveal">
                 <div class="category-image">
-                    <img src="entrance decoration/1.jpg" height="200" width="400
-                    " alt="Catering & Hospitality">
+                    <img src="entrance decoration/1.jpg" alt="Entrance Decorations">
                 </div>
-                
                 <div class="category-content">
                     <h3>Entrance Decorations</h3>
-                    <p>Exquisite catering services with traditional Tamilnadu cuisine and international options. We manage everything from menu planning to guest hospitality and service staff.</p>
+                    <p>Exquisite entrance decorations that welcome your guests in style. Traditional and modern designs with flowers, LED arches, and cultural elements.</p>
                     <a href="#catering" class="btn">Learn More</a>
                 </div>
             </div>
             
-            <div class="category-card">
-               
+            <div class="category-card reveal">
                 <div class="category-image">
-                    <img src="front receiving table\WASD0504.JPG" height="200" width="400"  alt="Photography & Videography">
+                    <img src="front receiving table/WASD0504.JPG" alt="Reception Decorations">
                 </div>
-               
                 <div class="category-content">
                     <h3>Reception Decorations</h3>
-                    <p>Professional photography and videography to capture every precious moment. We offer pre-wedding shoots, candid coverage, traditional photography, and cinematic wedding films.</p>
-                    <a href="#reception Decorations" class="btn">Learn More</a>
+                    <p>Professional reception decor that creates the perfect ambiance for your celebration. From floral centerpieces to stage setups and lighting.</p>
+                    <a href="#reception" class="btn">Learn More</a>
                 </div>
             </div>
             
-            <div class="category-card">
-                
+            <div class="category-card reveal">
                 <div class="category-image">
-                    <img src="leaves pavilion/6.JPG" height="200" width="400" alt="Entertainment & Music">
+                    <img src="leaves pavilion/6.JPG" alt="Green Leaves Pavilion">
                 </div>
-               
                 <div class="category-content">
-                    <h3>Green leaves pavilion</h3>
-                    <p>Live music, DJ services, traditional performers, and entertainment acts to keep your guests engaged. We arrange everything from nadaswaram to modern DJ setups.</p>
-                    <a href="leave pavilion" class="btn">Learn More</a>
+                    <h3>Green Leaves Pavilion</h3>
+                    <p>Stunning natural pavilion designs using fresh leaves and flowers. Create a lush, eco-friendly ambiance for your outdoor wedding ceremonies.</p>
+                    <a href="#pavilion" class="btn">Learn More</a>
                 </div>
             </div>
             
-            <div class="category-card">
-                <!-- Added image container -->
+            <div class="category-card reveal">
                 <div class="category-image">
-                    <img src="malai\1.jpg" height="200" width="400" alt="Logistics & Transportation">
+                    <img src="malai/1.jpg" alt="Flower Garland Works">
                 </div>
-              
                 <div class="category-content">
-                    <h3>Flowers Garland (malai) works</h3>
-                    <p>Complete logistics management including guest transportation, accommodation arrangements, parking management, and coordination between multiple venues.</p>
-                    <a href="flower garland" class="btn">Learn More</a>
+                    <h3>Flower Garland (Malai) Works</h3>
+                    <p>Traditional and custom flower garland designs for all wedding rituals. Fresh flowers, expert craftsmanship, and timely delivery.</p>
+                    <a href="#garland" class="btn">Learn More</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-    <!-- Service Details - Wedding Planning -->
-    <section class="service-details" id="planning">
-        <div class="container">
-            <div class="section-title">
-                <h2>Complete Wedding Planning</h2>
-                <p>Let us handle the details while you enjoy your journey to the big day</p>
+<!-- Service Details - Wedding Planning -->
+<section class="service-details" id="planning">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>Complete Wedding Planning</h2>
+            <div class="title-ornament">
+                <div class="line"></div>
+                <span class="flower">💐</span>
+                <div class="line"></div>
+            </div>
+            <p>Let us handle the details while you enjoy your journey to the big day</p>
+        </div>
+        
+        <div class="details-container reveal">
+            <div class="details-image">
+                <img src="mukortham stage/1.jpg" alt="Wedding Planning">
+            </div>
+            <div class="details-content">
+                <h3>Stress-Free Wedding Planning</h3>
+                <p>Our comprehensive wedding planning service takes care of every detail, from the initial concept to the final execution. We work closely with you to understand your vision and bring it to life.</p>
+                
+                <ul class="features-list">
+                    <li>Initial consultation and vision development</li>
+                    <li>Budget planning and management</li>
+                    <li>Vendor selection and negotiation</li>
+                    <li>Timeline and schedule creation</li>
+                    <li>Venue selection and booking</li>
+                    <li>Day-of coordination and management</li>
+                </ul>
+                
+                <a href="contact.html" class="btn">Request Planning Package</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Details - Stage & Decor -->
+<section class="service-details" id="decor">
+    <div class="container">
+        <div class="details-container reveal">
+            <div class="details-content">
+                <h3>Exquisite Stage & Venue Decor</h3>
+                <p>Transform your wedding venue into a magical space with our stunning decor services. We specialize in traditional Tamilnadu wedding aesthetics blended with modern design elements.</p>
+                
+                <ul class="features-list">
+                    <li>Traditional mukutham stage designs</li>
+                    <li>Floral arrangements and installations</li>
+                    <li>LED welcome arches and entrance decor</li>
+                    <li>Thematic venue transformations</li>
+                    <li>Lighting design and special effects</li>
+                    <li>Custom backdrops and photo booths</li>
+                </ul>
+                
+                <a href="gallery.html" class="btn">View Our Decor Portfolio</a>
+            </div>
+            <div class="details-image">
+                <img src="mukortham stage/13.jpg" alt="Stage Decor">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>Service Packages</h2>
+            <div class="title-ornament">
+                <div class="line"></div>
+                <span class="flower">💰</span>
+                <div class="line"></div>
+            </div>
+            <p>Choose the package that best suits your needs and budget</p>
+        </div>
+        
+        <div class="pricing-container reveal">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Basic Package</h3>
+                    <div class="price">₹2,50,000<span>*</span></div>
+                    <p>Ideal for intimate weddings</p>
+                </div>
+                <ul class="pricing-features">
+                    <li>Venue Selection Assistance</li>
+                    <li>Basic Stage Decor</li>
+                    <li>Catering Coordination</li>
+                    <li>Photography (8 hours)</li>
+                    <li>Day-of Coordination</li>
+                    <li>Guest List Management</li>
+                </ul>
+                <a href="contact.html" class="btn">Select Package</a>
             </div>
             
-            <div class="details-container">
-                <div class="details-image">
-                    <img src="mukortham stage/1.jpg" alt="Wedding Planning">
+            <div class="pricing-card featured">
+                <div class="pricing-header">
+                    <h3>Premium Package</h3>
+                    <div class="price">₹5,50,000<span>*</span></div>
+                    <p>Most popular choice</p>
                 </div>
-                <div class="details-content">
-                    <h3>Stress-Free Wedding Planning</h3>
-                    <p>Our comprehensive wedding planning service takes care of every detail, from the initial concept to the final execution. We work closely with you to understand your vision and bring it to life.</p>
-                    
-                    <ul class="features-list">
-                        <li>Initial consultation and vision development</li>
-                        <li>Budget planning and management</li>
-                        <li>Vendor selection and negotiation</li>
-                        <li>Timeline and schedule creation</li>
-                        <li>Venue selection and booking</li>
-                        <li>Day-of coordination and management</li>
-                    </ul>
-                    
-                    <a href="#" class="btn">Request Planning Package</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Details - Stage & Decor -->
-    <section class="service-details" id="decor">
-        <div class="container">
-            <div class="details-container">
-                <div class="details-content">
-                    <h3>Exquisite Stage & Venue Decor</h3>
-                    <p>Transform your wedding venue into a magical space with our stunning decor services. We specialize in traditional Tamilnadu wedding aesthetics blended with modern design elements.</p>
-                    
-                    <ul class="features-list">
-                        <li>Traditional mukutham stage designs</li>
-                        <li>Floral arrangements and installations</li>
-                        <li>LED welcome arches and entrance decor</li>
-                        <li>Thematic venue transformations</li>
-                        <li>Lighting design and special effects</li>
-                        <li>Custom backdrops and photo booths</li>
-                    </ul>
-                    
-                    <a href="#" class="btn">View Our Decor Portfolio</a>
-                </div>
-                <div class="details-image">
-                    <img src="mukortham stage/13.jpg" alt="Stage Decor">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Service Packages</h2>
-                <p>Choose the package that best suits your needs and budget</p>
+                <ul class="pricing-features">
+                    <li>Complete Wedding Planning</li>
+                    <li>Premium Stage & Venue Decor</li>
+                    <li>Catering Management</li>
+                    <li>Photography & Videography</li>
+                    <li>Entertainment Arrangements</li>
+                    <li>Guest Accommodation</li>
+                    <li>Full Month Coordination</li>
+                </ul>
+                <a href="contact.html" class="btn">Select Package</a>
             </div>
             
-            <div class="pricing-container">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Basic Package</h3>
-                        <div class="price">₹2,50,000<span>*</span></div>
-                        <p>Ideal for intimate weddings</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>Venue Selection Assistance</li>
-                        <li>Basic Stage Decor</li>
-                        <li>Catering Coordination</li>
-                        <li>Photography (8 hours)</li>
-                        <li>Day-of Coordination</li>
-                        <li>Guest List Management</li>
-                    </ul>
-                    <a href="#" class="btn">Select Package</a>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Luxury Package</h3>
+                    <div class="price">₹9,99,999<span>*</span></div>
+                    <p>Ultimate luxury experience</p>
                 </div>
-                
-                <div class="pricing-card featured">
-                    <div class="pricing-header">
-                        <h3>Premium Package</h3>
-                        <div class="price">₹5,50,000<span>*</span></div>
-                        <p>Most popular choice</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>Complete Wedding Planning</li>
-                        <li>Premium Stage & Venue Decor</li>
-                        <li>Catering Management</li>
-                        <li>Photography & Videography</li>
-                        <li>Entertainment Arrangements</li>
-                        <li>Guest Accommodation</li>
-                        <li>Full Month Coordination</li>
-                    </ul>
-                    <a href="#" class="btn">Select Package</a>
-                </div>
-                
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Luxury Package</h3>
-                        <div class="price">₹9,99,999<span>*</span></div>
-                        <p>Ultimate luxury experience</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>Bespoke Wedding Planning</li>
-                        <li>Luxury Decor & Theming</li>
-                        <li>Gourmet Catering</li>
-                        <li>Premium Photography & Cinematography</li>
-                        <li>Entertainment & Performances</li>
-                        <li>Complete Logistics Management</li>
-                        <li>Destination Wedding Support</li>
-                    </ul>
-                    <a href="#" class="btn">Select Package</a>
+                <ul class="pricing-features">
+                    <li>Bespoke Wedding Planning</li>
+                    <li>Luxury Decor & Theming</li>
+                    <li>Gourmet Catering</li>
+                    <li>Premium Photography & Cinematography</li>
+                    <li>Entertainment & Performances</li>
+                    <li>Complete Logistics Management</li>
+                    <li>Destination Wedding Support</li>
+                </ul>
+                <a href="contact.html" class="btn">Select Package</a>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 0.9rem;">*Prices are indicative and may vary based on specific requirements</p>
+    </div>
+</section>
+
+<!-- Process -->
+<section class="process">
+    <div class="container">
+        <div class="section-title reveal">
+            <h2>Our Process</h2>
+            <div class="title-ornament">
+                <div class="line"></div>
+                <span class="flower">✨</span>
+                <div class="line"></div>
+            </div>
+            <p>How we work to make your wedding dream a reality</p>
+        </div>
+        
+        <div class="process-container reveal">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Consultation</h4>
+                    <p>We meet to understand your vision, preferences, and budget for the wedding.</p>
                 </div>
             </div>
             
-            <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 0.9rem;">*Prices are indicative and may vary based on specific requirements</p>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section class="process">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Process</h2>
-                <p>How we work to make your wedding dream a reality</p>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Planning</h4>
+                    <p>We create a detailed plan including timeline, budget, and vendor selections.</p>
+                </div>
             </div>
             
-            <div class="process-container">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Consultation</h4>
-                        <p>We meet to understand your vision, preferences, and budget for the wedding.</p>
-                    </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Execution</h4>
+                    <p>Our team coordinates all vendors and manages every aspect of the wedding.</p>
                 </div>
-                
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Planning</h4>
-                        <p>We create a detailed plan including timeline, budget, and vendor selections.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Execution</h4>
-                        <p>Our team coordinates all vendors and manages every aspect of the wedding.</p>
-                    </div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Delivery</h4>
-                        <p>We ensure a flawless wedding day experience and handle all post-wedding tasks.</p>
-                    </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Delivery</h4>
+                    <p>We ensure a flawless wedding day experience and handle all post-wedding tasks.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- CTA -->
-    <section class="service-cta" id="contact">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Plan Your Dream Wedding?</h2>
-                <p>Contact us today for a complimentary consultation. Let's discuss your vision and how we can make your special day truly unforgettable.</p>
-                <a href="#" class="btn">Schedule a Consultation</a>
-                <p style="margin-top: 20px; font-size: 1rem;">Call us at: +91 9876543210 | Email: info@nilawedding.com</p>
-            </div>
+<!-- CTA -->
+<section class="service-cta" id="contact">
+    <div class="container">
+        <div class="cta-content reveal">
+            <h2>Ready to Plan Your Dream Wedding?</h2>
+            <p>Contact us today for a complimentary consultation. Let's discuss your vision and how we can make your special day truly unforgettable.</p>
+            <a href="contact.html" class="btn">Schedule a Consultation</a>
+            <p style="margin-top: 20px; font-size: 1rem;">Call us at: 98657 33444 | 90955 33444 | Email: info@nilawedding.com</p>
         </div>
-    </section>
+    </div>
+</section>
 
-
-
-     <!-- Floating Social Button -->
+<!-- Floating Social Button -->
 <div class="social-container">
     <div class="social-toggle" onclick="toggleSocial()">
         <i class="fas fa-share-alt"></i>
     </div>
-
     <div class="social-icons" id="socialIcons">
-        <a href="https://wa.me/919865733444" target="_blank" class="icon whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <a href="https://www.instagram.com/nila__wedding_planners/" target="_blank" class="icon instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="http://www.youtube.com/@Nilawedding" target="_blank" class="icon youtube">
-            <i class="fab fa-youtube"></i>
-        </a>
+        <a href="https://wa.me/919865733444" target="_blank" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/nila__wedding_planners/" target="_blank" class="icon instagram"><i class="fab fa-instagram"></i></a>
+        <a href="http://www.youtube.com/@Nilawedding" target="_blank" class="icon youtube"><i class="fab fa-youtube"></i></a>
     </div>
 </div>
 
-    <!-- Footer -->
-     <!-- Footer -->
-    <footer>
+<!-- Footer -->
+<footer>
+    <div class="footer-flower-bg">
+        <span style="top:10%;left:5%">🌸</span>
+        <span style="top:50%;left:20%">🌼</span>
+        <span style="top:80%;left:10%">🌺</span>
+        <span style="top:20%;right:8%">🌹</span>
+        <span style="top:65%;right:15%">💐</span>
+        <span style="top:40%;right:3%">🌸</span>
+    </div>
     <div class="container">
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Nila Wedding Management</h3>
                 <p>Professional wedding management services across Tamilnadu. Making your special occasions truly memorable.</p>
-                
                 <div class="footer-address">
                     <h4>Our Offices:</h4>
                     <p><strong>Coimbatore:</strong> Ganapathy Layout, KK Nagar, Saibaba Colony</p>
                     <p><strong>Kangayam:</strong> Dharapuram Road, Near Power Office</p>
                 </div>
-                
                 <div class="footer-contact">
                     <p><i class="fas fa-phone"></i> 98657 33444 | 90955 33444</p>
                     <p><i class="fas fa-envelope"></i> info@nilawedding.com</p>
                     <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</p>
                 </div>
-                
                 <div class="social-links">
                     <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
@@ -1116,7 +1300,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a href="service.html">Services</a></li>
                     <li><a href="venues.html">Venues</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -1126,12 +1310,12 @@
             <div class="footer-column">
                 <h3>Our Services</h3>
                 <ul>
-                    <li><a href="services.html">Wedding Planning</a></li>
-                    <li><a href="services.html">Stage & Decor</a></li>
-                    <li><a href="services.html">Catering Services</a></li>
-                    <li><a href="services.html">Photography</a></li>
-                    <li><a href="services.html">Entertainment</a></li>
-                    <li><a href="services.html">Logistics</a></li>
+                    <li><a href="service.html">Wedding Planning</a></li>
+                    <li><a href="service.html">Stage & Decor</a></li>
+                    <li><a href="service.html">Catering Services</a></li>
+                    <li><a href="service.html">Photography</a></li>
+                    <li><a href="service.html">Entertainment</a></li>
+                    <li><a href="service.html">Logistics</a></li>
                 </ul>
             </div>
             
@@ -1149,48 +1333,148 @@
         </div>
         
         <div class="copyright">
-            <p>&copy; 2015 - 2023 Nila Wedding Management. All Rights Reserved. | Founder: Prabhu R | Established Since 2015</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Coimbatore | Kangayam | Tirupur | Erode | Kovai Puthur</p>
+            <p>🌸 &copy; 2015-2025 Nila Wedding Management. All Rights Reserved. | Founder: Prabhu R | Established Since 2015 🌸</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">Coimbatore · Kangayam · Tirupur · Erode · Kovai Puthur</p>
         </div>
     </div>
 </footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+<script>
+/* ===== FLOATING PETALS CANVAS ===== */
+(function() {
+    const canvas = document.getElementById('petal-canvas');
+    const ctx = canvas.getContext('2d');
+    let W = window.innerWidth, H = window.innerHeight;
+    canvas.width = W; canvas.height = H;
+
+    window.addEventListener('resize', () => {
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W; canvas.height = H;
+    });
+
+    const petalEmojis = ['🌸', '🌺', '🌼', '🌹', '💮', '🏵️'];
+    const petals = [];
+    for (let i = 0; i < 22; i++) {
+        petals.push({
+            x: Math.random() * W,
+            y: Math.random() * H - H,
+            size: 14 + Math.random() * 18,
+            speed: 0.5 + Math.random() * 1.2,
+            drift: (Math.random() - 0.5) * 0.8,
+            rot: Math.random() * 360,
+            rotSpeed: (Math.random() - 0.5) * 2,
+            emoji: petalEmojis[Math.floor(Math.random() * petalEmojis.length)],
+            opacity: 0.4 + Math.random() * 0.5,
+            delay: Math.random() * 8000
+        });
+    }
+    let start = null;
+    function animate(ts) {
+        if (!start) start = ts;
+        ctx.clearRect(0, 0, W, H);
+        petals.forEach(p => {
+            if (ts - start < p.delay) return;
+            p.y += p.speed;
+            p.x += p.drift + Math.sin(p.y / 80) * 0.4;
+            p.rot += p.rotSpeed;
+            if (p.y > H + 30) {
+                p.y = -30;
+                p.x = Math.random() * W;
             }
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot * Math.PI / 180);
+            ctx.font = p.size + 'px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(p.emoji, 0, 0);
+            ctx.restore();
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+})();
 
+/* ===== HEADER SCROLL ===== */
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('mainHeader');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+});
 
-        function toggleSocial() {
-    document.getElementById("socialIcons").classList.toggle("active");
+/* ===== SCROLL REVEAL ===== */
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+    });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+/* ===== FLOATING SOCIAL ===== */
+function toggleSocial() {
+    const icons = document.getElementById('socialIcons');
+    if (icons) icons.classList.toggle('active');
 }
 
+/* ===== MOBILE HAMBURGER MENU ===== */
+(function() {
+    const hamburger = document.getElementById('hamburgerMenu');
+    const navLinks = document.getElementById('navLinks');
+    const body = document.body;
 
-    </script>
+    function toggleMenu() {
+        if (!hamburger || !navLinks) return;
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+        if (hamburger && navLinks) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    }
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', toggleMenu);
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+})();
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        if(this.getAttribute('href') === '#') return;
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
+            closeMenu();
+        }
+    });
+});
+</script>
 </body>
 </html>
